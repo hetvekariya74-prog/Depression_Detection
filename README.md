@@ -1,91 +1,25 @@
 # Depression_Detection
-1. extracted_audio
-Contains audio files extracted from raw recordings
-Based on timestamps from transcripts
-Clean audio (no noise or silence)
-Ready for feature extraction or model training
-2. extracted_features
-Stores features extracted from audio files
-Examples:
-Mel Spectrograms
-MFCC (Mel Frequency Cepstral Coefficients)
-Other audio features
-3. audio_chunks
-Contains smaller segments of audio (chunks)
-Created from extracted audio files
-Used when models require raw signal input
+extracted_audio: Contains the audio files extracted from raw audio files based on the timestamps in the transcript. This audio files are clean and does not contain any noise or silence. It is ready to be used for feature extraction or training.
+extracted_features: Put the extracted features from audio files here for example, mel spectrograms, MFCCs, etc.
+audio_chunks: Put the audio chunks here. These audio chunks will be created from the extracted audio files and this audio chunks will be used for training the model when model requires raw signal data. The code for creating audio chunks as per required time duration is provided in the src folder inside data_preparation directory.
+dataset_info: Contains metadata and csv files related to the dataset such as labels, transcripts, train test split information, etc.
+src: Contains the source code for the project.
+data_preparation: Contains code for data preparation such as extracting audio, creating audio chunks, etc.
+preprocessing: Contains code for preprocessing the audio files such as extracting audio from timestamps and augmenting the audio files.
+training: Contains code for training the model.
+visualization: Contains code for Exploratory Data Analysis (EDA) and visualization of the data.
+Features that can be extracted from audio files
+Mel spectogram, fundamental frequency, spectral constrast, recurrence matrix, MFCC, chroma features, zero crossing rate, RMS energy, tonnetz, Teager energy operator, etc.
+Our Approach
+Raw Signal Data:
 
-Chunking code is available in:
+Train DistilHubert (Chunk audio file to same length and then train)
+Extracted Features:
 
-src/data_preparation/
-4. dataset_info
-Contains metadata and dataset-related files:
-Labels
-Transcripts
-Train-test split information
-CSV files
-5. src (Source Code)
-
-Main project codebase, organized into:
-
-🔹 data_preparation
-Code for:
-Audio extraction
-Audio chunk creation
-🔹 preprocessing
-Code for:
-Extracting audio using timestamps
-Audio augmentation
-🔹 training
-Code for training machine learning / deep learning models
-🔹 visualization
-Code for:
-Exploratory Data Analysis (EDA)
-Data visualization
-🎧 Audio Features That Can Be Extracted
-
-You can extract the following features from audio:
-
-Mel Spectrogram
-MFCC
-Fundamental Frequency
-Spectral Contrast
-Recurrence Matrix
-Chroma Features
-Zero Crossing Rate
-RMS Energy
-Tonnetz
-Teager Energy Operator
-🚀 Our Approach
-1. Using Raw Signal Data
-Model: DistilHuBERT
-Process:
-Convert audio into equal-length chunks
-Train directly on raw waveform data
-2. Using Extracted Features
-🔸 Mel Spectrogram
-Models:
-CNN
-VGG19
-ResNet50
-Approach:
-Convert spectrograms into patches
-Train image-based models
-🔸 MFCC
-Models:
-CNN
-VGG19
-Transformer
-💡 Additional Ideas / Experiments
-Use Wave2Vec2 for emotion recognition
-Classify audio based on detected emotions
-📚 Useful Resources
-DistilHuBERT fine-tuning
-Audio Spectrogram Transformer
-Audio Spectrogram Transformer research paper
-✅ Summary
-Clean pipeline: Audio → Features → Chunks → Training
-Two main approaches:
-Raw audio (DistilHuBERT)
-Feature-based (Spectrogram, MFCC + CNN/Transformers)
-Flexible architecture for experimentation and scaling
+Mel Spectogram: CNN, VGG19, ResNet50 (Create patches of mel spectograms and then train)
+MFCC: CNN, VGG19, Transformer
+Some resources
+Wave2Vec2 Emotion Recognition - Maybe we can try to identify emotions from the audio files and then classify the audio files based on the emotions. (This is just a thought)
+DistilHubert Fine Tuning
+Audio Spectogram Transformer
+Audio Spectogram Transformer Paper
